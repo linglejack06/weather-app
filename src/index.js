@@ -1,3 +1,3 @@
-import {fetchData, formatData} from './modules/weather';
+import { formatData } from './modules/weather';
 
-formatData().then(data => console.log(data));
+formatData().then((data) => console.log(data));
