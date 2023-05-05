@@ -1,3 +1,3 @@
-import fetchData from './modules/weather';
+import {fetchData, formatData} from './modules/weather';
 
-fetchData('danville');
+formatData().then(obj => console.log(obj.temperature))
