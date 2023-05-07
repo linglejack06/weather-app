@@ -9,29 +9,39 @@ async function fetchData(location) {
   }
 }
 function formatData(data) {
-  const currentTemp = data.current.temp_f;
+  const currentTemp = `${data.current.temp_f}\u00B0 F`;
   const currentCondition = data.current.condition;
-  const maxTemp = data.forecast.forecastday[0].day.maxtemp_f;
-  const minTemp = data.forecast.forecastday[0].day.mintemp_f;
+  const maxTemp = `${data.forecast.forecastday[0].day.maxtemp_f}\u00B0 F`;
+  const minTemp = `${data.forecast.forecastday[0].day.mintemp_f}\u00B0 F`;
   const location = `${data.location.name}, ${data.location.region}`;
   const hours = [];
   data.forecast.forecastday[0].hour.forEach((val) => {
-    const temp = val.temp_f;
+    const temp = `${val.temp_f}\u00B0 F`;
     const { time } = val;
-    const feelsLike = val.feelslike_f;
-    const gust = val.gust_mph;
-    const rainChance = val.chance_of_rain;
-    const snowChance = val.chance_of_snow;
+    const feelsLike = `${val.feelslike_f}\u00B0 F`;
+    const gust = `${val.gust_mph}mph`;
+    const rainChance = `${val.chance_of_rain}%`;
+    const snowChance = `${val.chance_of_snow}%`;
     const { condition } = val;
-    const { humidity } = val;
+    const humidity = `${val.humidity}%`;
     const { uv } = val;
-    const wind = val.wind_mph;
+    const wind = `${val.wind_mph}mph`;
     hours.push({
       temp, time, feelsLike, gust, rainChance, snowChance, condition, humidity, uv, wind,
     });
   });
+  const days = [];
+  data.forecast.forecastday.forEach((day) => {
+    const { date } = day;
+    const minDayTemp = `${day.day.mintemp_f}\u00B0 F`;
+    const maxDayTemp = `${day.day.maxtemp_f}\u00B0 F`;
+    const condition = day.day.condition.text;
+    days.push({
+      date, minDayTemp, maxDayTemp, condition,
+    });
+  });
   return {
-    location, currentTemp, currentCondition, maxTemp, minTemp, hours,
+    location, currentTemp, currentCondition, maxTemp, minTemp, hours, days,
   };
 }
 export default async function getData(location = 'New York') {
