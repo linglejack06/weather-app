@@ -3,15 +3,16 @@ import { convertTime } from './helperFuncs';
 let weatherActive = false;
 const weatherContainer = document.querySelector('.weather-container');
 const cardContainer = document.querySelector('.card-container');
-export function addImage(url) {
+const sidebar = document.querySelector('.sidebar');
+function addImage(url) {
   if (document.querySelector('.weather-image')) {
     const oldImage = document.querySelector('.weather-image');
-    document.body.removeChild(oldImage);
+    weatherContainer.removeChild(oldImage);
   }
   const image = new Image();
   image.src = url;
   image.classList.add('weather-image');
-  document.body.appendChild(image);
+  weatherContainer.appendChild(image);
 }
 export function createHourCard(hour, current) {
   const container = document.createElement('div');
@@ -45,8 +46,9 @@ export function renderCards(hourCards) {
     cardContainer.appendChild(card);
   });
 }
-export function addWeatherCard(data) {
+export function addWeatherCard(data, url) {
   weatherActive = true;
+  addImage(url);
   const tempContainer = document.createElement('div');
   tempContainer.classList.add('temp');
   tempContainer.textContent = data.currentTemp;
@@ -56,5 +58,16 @@ export function clearWeather() {
   if (weatherActive) {
     weatherContainer.innerHTML = '';
     cardContainer.innerHTML = '';
+  }
+}
+export function renderSidebar(locations) {
+  sidebar.innerHTML = '';
+  // eslint-disable-next-line no-restricted-syntax, no-unused-vars
+  for (const [key] of Object.entries(locations)) {
+    const sidebarBtn = document.createElement('button');
+    sidebarBtn.textContent = key;
+    sidebarBtn.classList.add('sidebar-item');
+    sidebarBtn.dataset.location = key;
+    sidebar.appendChild(sidebarBtn);
   }
 }
