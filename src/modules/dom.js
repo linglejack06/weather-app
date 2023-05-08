@@ -4,12 +4,13 @@ let weatherActive = false;
 const weatherContainer = document.querySelector('.weather-container');
 const cardContainer = document.querySelector('.card-container');
 export function addImage(url) {
-  if (document.querySelector('img')) {
-    const oldImage = document.querySelector('img');
+  if (document.querySelector('.weather-image')) {
+    const oldImage = document.querySelector('.weather-image');
     document.body.removeChild(oldImage);
   }
   const image = new Image();
   image.src = url;
+  image.classList.add('weather-image');
   document.body.appendChild(image);
 }
 export function createHourCard(hour, current) {
@@ -25,6 +26,7 @@ export function createHourCard(hour, current) {
   cond.classList.add('cond-img');
   const image = new Image();
   image.src = hour.condition.icon;
+  image.classList.add('hour-cond-img');
   cond.appendChild(image);
   timeCond.appendChild(cond);
   container.appendChild(timeCond);

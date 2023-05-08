@@ -11,13 +11,11 @@ export function convertTime(dateStr) {
   return `${hours}AM`;
 }
 export function filterHourCards(hours) {
-  const currentHour = document.querySelector('.current-hour');
   let index;
   hours.forEach((hour) => {
     if (hour.classList.contains('current-hour')) {
       index = hours.indexOf(hour);
     }
   });
-  console.log(currentHour);
   return Array.prototype.concat(hours.slice(index, hours.length));
 }
