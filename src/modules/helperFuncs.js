@@ -1,4 +1,4 @@
-export default function convertTime(dateStr) {
+export function convertTime(dateStr) {
   const date = new Date(dateStr);
   const hours = date.getHours();
   // % 12 will take time down to 12 hr format i.e. 13 % 12 -> 1
@@ -9,4 +9,15 @@ export default function convertTime(dateStr) {
     return '12AM';
   }
   return `${hours}AM`;
+}
+export function filterHourCards(hours) {
+  const currentHour = document.querySelector('.current-hour');
+  let index;
+  hours.forEach((hour) => {
+    if (hour.classList.contains('current-hour')) {
+      index = hours.indexOf(hour);
+    }
+  });
+  console.log(currentHour);
+  return Array.prototype.concat(hours.slice(index, hours.length));
 }

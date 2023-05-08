@@ -1,4 +1,4 @@
-import convertTime from './helperFuncs';
+import { convertTime } from './helperFuncs';
 
 let weatherActive = false;
 const weatherContainer = document.querySelector('.weather-container');
@@ -12,7 +12,7 @@ export function addImage(url) {
   image.src = url;
   document.body.appendChild(image);
 }
-export function addHourCard(hour, current) {
+export function createHourCard(hour, current) {
   const container = document.createElement('div');
   container.classList.add('hour-card');
   if (current) container.classList.add('current-hour');
@@ -36,7 +36,12 @@ export function addHourCard(hour, current) {
   cOfR.classList.add('hour-rain-chance');
   cOfR.textContent = `Rain: ${hour.rainChance}`;
   container.appendChild(cOfR);
-  cardContainer.appendChild(container);
+  return container;
+}
+export function renderCards(hourCards) {
+  hourCards.forEach((card) => {
+    cardContainer.appendChild(card);
+  });
 }
 export function addWeatherCard(data) {
   weatherActive = true;

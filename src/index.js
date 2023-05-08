@@ -1,9 +1,9 @@
 import getData from './modules/weather';
 import fetchImage from './modules/giphy';
 import {
-  addImage, addHourCard, addWeatherCard, clearWeather,
+  addImage, createHourCard, addWeatherCard, clearWeather, renderCards,
 } from './modules/dom';
-import convertTime from './modules/helperFuncs';
+import { convertTime, filterHourCards } from './modules/helperFuncs';
 // eslint-disable-next-line no-unused-vars
 import Style from './style.css';
 
@@ -13,17 +13,19 @@ const input = document.querySelector('input');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   clearWeather();
+  const cards = [];
   getData(input.value)
     .then((data) => {
       console.log(data);
       data.hours.forEach((hour) => {
         if (convertTime(data.currentTime) === convertTime(hour.time)) {
-          addHourCard(hour, true);
+          cards.push(createHourCard(hour, true));
         } else {
-          addHourCard(hour);
+          cards.push(createHourCard(hour));
         }
       });
-      addHourCard(data.hours[0]);
+      const hourCards = filterHourCards(cards);
+      renderCards(hourCards);
       addWeatherCard(data);
       return data.currentCondition.text;
     })
