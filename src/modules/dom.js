@@ -28,6 +28,14 @@ export function addHourCard(hour, current) {
   cond.appendChild(image);
   timeCond.appendChild(cond);
   container.appendChild(timeCond);
+  const temp = document.createElement('h4');
+  temp.classList.add('hour-temp');
+  temp.textContent = hour.temp;
+  container.appendChild(temp);
+  const cOfR = document.createElement('h4');
+  cOfR.classList.add('hour-rain-chance');
+  cOfR.textContent = `Rain: ${hour.rainChance}`;
+  container.appendChild(cOfR);
   cardContainer.appendChild(container);
 }
 export function addWeatherCard(data) {
