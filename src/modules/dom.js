@@ -16,7 +16,18 @@ export function addHourCard(hour, current) {
   const container = document.createElement('div');
   container.classList.add('hour-card');
   if (current) container.classList.add('current-hour');
-  container.textContent = convertTime(hour.time);
+  const timeCond = document.createElement('div');
+  timeCond.classList.add('time-and-condition');
+  const time = document.createElement('h2');
+  time.textContent = convertTime(hour.time);
+  timeCond.appendChild(time);
+  const cond = document.createElement('div');
+  cond.classList.add('cond-img');
+  const image = new Image();
+  image.src = hour.condition.icon;
+  cond.appendChild(image);
+  timeCond.appendChild(cond);
+  container.appendChild(timeCond);
   cardContainer.appendChild(container);
 }
 export function addWeatherCard(data) {
