@@ -35,8 +35,7 @@ form.addEventListener('submit', (e) => {
   getData(input.value)
     .then((data) => {
       savedLocations[data.location] = data;
-      renderSidebar(savedLocations);
-      console.log(savedLocations);
+      renderSidebar(savedLocations, data.location);
       renderPage(data);
     })
     .then(() => {
@@ -45,9 +44,11 @@ form.addEventListener('submit', (e) => {
       sidebarLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
           clearWeather();
+          renderSidebar(savedLocations, event.target.dataset.location);
           renderPage(savedLocations[event.target.dataset.location]);
         });
       });
+      input.value = '';
     })
     .catch((err) => {
       console.error(err);

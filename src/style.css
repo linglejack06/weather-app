@@ -95,3 +95,6 @@ input {
 .hour-card.current-hour {
   background-color: greenyellow;
 }
+.active {
+  background-color: greenyellow;
+}

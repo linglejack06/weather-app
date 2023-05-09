@@ -117,13 +117,17 @@ export function clearWeather() {
     cardContainer.innerHTML = '';
   }
 }
-export function renderSidebar(locations) {
+export function renderSidebar(locations, location) {
   sidebar.innerHTML = '';
   // eslint-disable-next-line no-restricted-syntax, no-unused-vars
   for (const [key] of Object.entries(locations)) {
     const sidebarBtn = document.createElement('button');
     sidebarBtn.textContent = key;
     sidebarBtn.classList.add('sidebar-item');
+    console.log(key);
+    if (key === location) {
+      sidebarBtn.classList.add('active');
+    }
     sidebarBtn.dataset.location = key;
     sidebar.appendChild(sidebarBtn);
   }
