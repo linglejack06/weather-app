@@ -12,6 +12,11 @@ function formatData(data) {
   const currentTemp = `${data.current.temp_f}\u00B0 F`;
   const currentCondition = data.current.condition;
   const currentTime = data.current.last_updated;
+  const currentUV = data.current.uv;
+  const currentWind = `${data.current.wind_mph}mph`;
+  const currentGust = `${data.current.gust_mph}mph`;
+  const currentHumidity = `${data.current.humidity}%`;
+  const currentPrecip = `${data.current.precip_in}in`;
   const maxTemp = `${data.forecast.forecastday[0].day.maxtemp_f}\u00B0 F`;
   const minTemp = `${data.forecast.forecastday[0].day.mintemp_f}\u00B0 F`;
   const location = `${data.location.name}, ${data.location.region}`;
@@ -42,7 +47,8 @@ function formatData(data) {
     });
   });
   return {
-    location, currentTemp, currentCondition, currentTime, maxTemp, minTemp, hours, days,
+    // eslint-disable-next-line max-len
+    location, currentTemp, currentCondition, currentTime, currentUV, currentWind, currentGust, currentHumidity, currentPrecip, maxTemp, minTemp, hours, days,
   };
 }
 export default async function getData(location = 'New York') {

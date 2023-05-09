@@ -24,6 +24,9 @@ function renderPage(data) {
     addWeatherCard(data, url);
   });
 }
+getData().then((data) => {
+  renderPage(data);
+});
 const savedLocations = {};
 form.addEventListener('submit', (e) => {
   e.preventDefault();

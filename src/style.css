@@ -1,3 +1,45 @@
 .current-hour {
   color: green;
 }
+body {
+  height: 100vh;
+  width: 100vw;
+}
+#content {
+  height: 90%;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 50% 50%;
+  gap: 24px;
+}
+.card-container {
+  grid-column: span 2;
+  display: flex; 
+  gap: 36px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.weather-container {
+  display: flex;
+  flex-direction: column;
+}
+.weather-head {
+  display: flex;
+  gap: 24px;
+}
+.weather-image {
+  width: 100px;
+  border-radius: 8px;
+}
+.body-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+form {
+  display: flex;
+  gap: 4px;
+}
+
+
