@@ -54,7 +54,6 @@ function formatData(data) {
 export default async function getData(location = 'New York') {
   try {
     const data = await fetchData(location);
-    console.log(data);
     return formatData(data);
   } catch (err) {
     console.log(err);

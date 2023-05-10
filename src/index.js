@@ -40,7 +40,6 @@ form.addEventListener('submit', (e) => {
     })
     .then(() => {
       const sidebarLinks = document.querySelectorAll('.sidebar-item');
-      console.log(sidebarLinks);
       sidebarLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
           clearWeather();

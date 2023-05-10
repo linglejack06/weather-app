@@ -124,7 +124,6 @@ export function renderSidebar(locations, location) {
     const sidebarBtn = document.createElement('button');
     sidebarBtn.textContent = key;
     sidebarBtn.classList.add('sidebar-item');
-    console.log(key);
     if (key === location) {
       sidebarBtn.classList.add('active');
     }
